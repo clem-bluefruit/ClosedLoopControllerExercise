@@ -1,0 +1,49 @@
+﻿<Window x:Class="Simulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Simulator"
+        xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+        mc:Ignorable="d"
+        Title="Simulator" Height="350" Width="525" WindowState="Maximized">
+    <Window.DataContext>
+        <local:Simulation/>
+    </Window.DataContext>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ListBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"  ItemsSource="{Binding PossibleVelocityTargets}" SelectedItem="{Binding SelectedVelocityTarget}"/>
+
+        <oxy:Plot Grid.Column="0" Grid.Row="0"  Title="Velocity (Process variable)">
+            <oxy:Plot.Axes>
+                <oxy:LinearAxis Minimum="{Binding VelocityDisplayMinimum}" Maximum="{Binding VelocityDisplayMaximum}" Position="Left" Title="Velocity (m/s)"/>
+                <oxy:LinearAxis Minimum="{Binding TimeMinimum}" Maximum="{Binding TimeMaximum}" Position="Bottom" Title="Time (seconds)"/>
+            </oxy:Plot.Axes>
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding TargetVelocityPoints}" Title="Target velocity (Set point)" />
+                <oxy:LineSeries ItemsSource="{Binding ActualVelocityPoints}" Title="Velocity (Process variable)" />
+            </oxy:Plot.Series>
+        </oxy:Plot>
+
+        <oxy:Plot Grid.Column="0" Grid.Row="1" Title="Control variable">
+            <oxy:Plot.Axes>
+                <oxy:LinearAxis Minimum="-3" Maximum="3" Position="Left" Title="Force (N)"/>
+                <oxy:LinearAxis Minimum="{Binding TimeMinimum}" Maximum="{Binding TimeMaximum}" Position="Bottom" Title="Time (seconds)"/>
+            </oxy:Plot.Axes>
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding ControlVariablePoints}" Title="Control variable" Color="Black" />
+            </oxy:Plot.Series>
+        </oxy:Plot>
+
+    </Grid>
+</Window>
