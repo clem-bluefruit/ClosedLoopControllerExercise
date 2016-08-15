@@ -23,7 +23,7 @@ namespace Simulator
             calcualteBlocked = true;
 
             TargetVelocities = DataSets.CreateTargetVelocities();
-            SelectedVelocityTarget = "Two changes";
+            SelectedVelocityTarget = "Two changes (random)";
 
             ControllerTimeInterval = 0.1m;
             TimeMinimum = 0;

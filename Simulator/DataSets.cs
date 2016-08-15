@@ -36,6 +36,14 @@ namespace Simulator
                 {
                     "Two changes", new[]
                     {
+                        new DataSection {duration = 1, offset = 0, gradient = 0},
+                        new DataSection {duration = 19, offset = 10, gradient = 0},
+                        new DataSection {duration = 20, offset = -7, gradient = 0}
+                    }
+                },
+                {
+                    "Two changes (random)", new[]
+                    {
                         new DataSection {duration = startTime, offset = 0, gradient = 0},
                         new DataSection {duration = duration, offset = maxVelocity, gradient = 0},
                         new DataSection {duration = 40 - (startTime + duration), offset = -(maxVelocity * 0.7m), gradient = 0}
