@@ -47,7 +47,11 @@ namespace Simulator
 
         protected void OnPropertChanged([CallerMemberName] string name = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler.Invoke(this, new PropertyChangedEventArgs(name));
+            }
         }
 
         #region Creating data sets
@@ -65,7 +69,10 @@ namespace Simulator
 
         #region Selected Velocity Target
 
-        public IEnumerable<string> PossibleVelocityTargets => TargetVelocities.Keys;
+        public IEnumerable<string> PossibleVelocityTargets
+        {
+            get { return TargetVelocities.Keys; }
+        }
 
         private string _selectedVelocityTarget;
         public string SelectedVelocityTarget
@@ -178,7 +185,10 @@ namespace Simulator
             }
         }
 
-        public double TimeMaximumMaximum => 40.0;
+        public double TimeMaximumMaximum
+        {
+            get { return 40.0; }
+        }
 
         private double _velocityDisplayMinimum;
         public double VelocityDisplayMinimum
@@ -250,8 +260,15 @@ namespace Simulator
             return (force / (double)Mass) * interval;
         }
 
-        private int VelocityDataPoints => (int)(TimeMaximumMaximum / (double)ControllerTimeInterval) * 10;
-        private double DataPointTickInterval => (double)ControllerTimeInterval / 10;
+        private int VelocityDataPoints
+        {
+            get { return (int) (TimeMaximumMaximum / (double) ControllerTimeInterval) * 10; }
+        }
+
+        private double DataPointTickInterval
+        {
+            get { return (double) ControllerTimeInterval / 10; }
+        }
 
         private void Calculate()
         {
