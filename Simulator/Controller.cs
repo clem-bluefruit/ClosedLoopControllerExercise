@@ -8,7 +8,7 @@ namespace Simulator
 {
     class Controller
     {
-        public double CalculateOutput(double time, double targetVelocity, double currentVelocity)
+        public double CalculateControlVariable(double time, double targetVelocity, double currentVelocity)
         {
             return 0.1;
         }

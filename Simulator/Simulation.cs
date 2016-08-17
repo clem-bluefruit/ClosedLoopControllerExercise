@@ -293,7 +293,7 @@ namespace Simulator
 
                 if (t % 10 == 0)
                 {
-                    outputForce[currentOutputIndex] = controller.CalculateOutput(
+                    outputForce[currentOutputIndex] = controller.CalculateControlVariable(
                         DataPointTickInterval * t,
                         targetVelocityForDataPoint[t],
                         currentVelocity);
