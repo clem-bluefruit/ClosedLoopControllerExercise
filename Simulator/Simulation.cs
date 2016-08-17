@@ -37,7 +37,7 @@ namespace Simulator
 
             InitialVelocity = 0;
 
-            OutputLag = 5;
+            OutputLag = (uint)(0.5 / (double)ControllerTimeInterval);
 
             calcualteBlocked = false;
             Calculate();
